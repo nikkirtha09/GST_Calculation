@@ -1,0 +1,82 @@
+<!-- Description
+ This web page calculates the total selling price of a product including GST (Goods and Services Tax),
+  and displays the GST amount split between State GST (SGST) and Central GST (CGST). 
+  It provides a simple form where users can input product details and calculate the total amount.-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST Calculation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">EXCLUDE GST CALCULATION</h1>
+        <form>
+            <div class="form-group">
+                <label for="pc">Product Code:</label>
+                <input type="text" id="pc" class="form-control" placeholder="Enter product code">
+            </div>
+            <div class="form-group">
+                <label for="pn">Product Name:</label>
+                <input type="text" id="pn" class="form-control" placeholder="Enter product name">
+            </div>
+            <div class="form-group">
+                <label for="price">Product Price:</label>
+                <input type="number" id="price" class="form-control" placeholder="Enter product price">
+            </div>
+            <div class="form-group">
+                <label for="qty">Product Quantity:</label>
+                <input type="number" id="qty" class="form-control" placeholder="Enter product quantity">
+            </div>
+            <div class="form-group">
+                <label for="gst">GST (%):</label>
+                <input type="number" id="gst" class="form-control" placeholder="Enter gst percentage">
+            </div>
+            <button type="button" id="cal" class="btn btn-primary mt-2">Calculate</button>
+        </form><br>
+        <h3 class=" alert-success">Price:<span id="result"></span></h3>
+        <h5>state gst:<span id="sgst"></span></h5>
+        <h5>centeral gst:<span id="cgst"></span></h5>
+    </div>
+    <script>
+        function calculation() {
+            let productprice = parseFloat(document.getElementById("price").value);
+            let quantity = parseFloat(document.getElementById("qty").value);
+            let gst = parseFloat(document.getElementById("gst").value);
+            sellingprice = quantity * (productprice + (productprice * gst / 100));
+            gstcost=gst/2;
+
+
+            document.getElementById("result").innerHTML = "" + sellingprice;
+            document.getElementById("sgst").innerHTML = "" + gstcost;
+            document.getElementById("cgst").innerHTML = "" + gstcost;
+
+        }
+        document.getElementById("cal").addEventListener("click", calculation);
+    </script>
+    <!--<script>
+    
+        function calculation() {
+            const productprice = parseFloat(document.getElementById("price").value);
+            const quantity = parseFloat(document.getElementById("qty").value);
+            const gst = parseFloat(document.getElementById("gst").value);
+
+            gstper = (productprice * gst) / 100;
+            price = productprice + gstper;
+            sellingprice = quantity * price;
+
+            document.getElementById("result").innerHTML = "" + sellingprice;
+        }
+
+        document.getElementById("cal").addEventListener("click", calculation);
+    </script>-->
+
+</body>
+
+</html>
